@@ -88,7 +88,7 @@ btnJoin.onclick = () => {
     // clear input
     usernameInput.value = '';
     // disable and vanish input
-    btnJoin.disabled = true;
+    usernameInput.disabled = true;
     usernameInput.style.visibility = 'hidden';
     // disable and vanish join button
     btnJoin.disabled = true;
@@ -97,7 +97,7 @@ btnJoin.onclick = () => {
     document.querySelector('#label-username').innerHTML = username;
 
     webSocket = new WebSocket(endPoint);
-
+    // console.log('web'+endPoint);
     webSocket.onopen = function(e){
         console.log('Connection opened! ', e);
 
@@ -252,15 +252,15 @@ const constraints = {
     'audio': true
 }
 
-// const iceConfiguration = {
-//     iceServers: [
-//         {
-//             urls: ['turn:numb.viagenie.ca'],
-//             credential: numbTurnCredential,
-//             username: numbTurnUsername
-//         }
-//     ]
-// };
+const iceConfiguration = {
+    iceServers: [
+        {
+            urls: ['turn:numb.viagenie.ca'],
+            credential: numbTurnCredential,
+            username: numbTurnUsername
+        }
+    ]
+};
 
 userMedia = navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
