@@ -61,28 +61,32 @@ video {
     <div class="wrapper">
 
 
-
         {% if user.is_authenticated %}
-        <div class="header">
-            <h3 id="label-username">Username</h3>
-            <div class="form-group mx-sm-3 mb-2">
-                <input id="username" value="{{user}}" class="form-control" disabled>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="header">
+                <h3 id="label-username">Username</h3>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input id="username" name="username" type="text" value="{{user}}" class="form-control" disabled>
+                </div>
+                <button class="btn btn-success" id="btn-joinroom" name="btn-joinroom">Join Room</button>
+                <br>
+                <a class="btn btn-success" style="margin-left: 10px;" href="/logout" type="submit"
+                    id="btn-logout">LogOut</a>
+
             </div>
-            <button class="btn btn-success" id="btn-join">Join Room</button><br>
-            <a class="btn btn-success" href="/logout" type="submit" style=" margin-left: 10px;"
-                id="btn-logout">LogOut</a>
+            <div class="header">
+                <h3 id="label-username">Meeting ID</h3>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input id="meetingid" name="meetingid" class="form-control">
+                </div>
+                <button class="btn btn-success" id="btn-roomid" name="btn-roomid">Join Room with id</button>
+                {% comment %} <br>
+                <a class="btn btn-success" style="margin-left: 10px;" href="/logout" type="submit"
+                    id="btn-logout">LogOut</a> {% endcomment %}
 
-        </div>
-        <div class="header1">
-            <h3 id="">Meeting id: </h3>
-            <h3 id="mid"> </h3>
-            {% comment %} <a class="" id="link" href="" style=" margin-left: 10px;">Me</a> {% endcomment %}
-        </div>
-        <div class="header1">
-            <h3 id="">Meeting Link</h3>
-            <a class="" id="link" href="" style=" margin-left: 10px;"></a>
-        </div>
-
+            </div>
+        </form>
         {% else %}
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -97,42 +101,56 @@ video {
         {% endfor %}
         <div class="header">
 
-            <form action="/" method="post">
+            <form action="" method="post">
 
                 {% csrf_token %}
-                <h3 id="label-username">Username </h3>
+                <h3 id="label-uname">User Name</h3>
                 <div class="form-group mx-sm-3 mb-2">
-                    <input id="username" name="username" class="form-control">
+                    <input id="uname" name="uname" type="text" class="form-control">
                 </div>
-                <h3 id="label-username">Password</h3>
+                <h3 id="label-firstname">First Name</h3>
                 <div class="form-group mx-sm-3 mb-2">
-                    <input id="password" name="password" type="password" class="form-control">
+                    <input id="firstname" name="firstname" type="text" class="form-control">
                 </div>
-                <button class="btn btn-success" id="btn-login">Login</button>
+                <h3 id="label-lastname">Last Name</h3>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input id="lastname" name="lastname" type="text" class="form-control">
+                </div>
+                <h3 id="label-email">Email</h3>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input id="email" name="email" type="text" class="form-control">
+                </div>
+                <h3 id="label-password">Password</h3>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input id="password" name="password" type="password"  class="form-control">
+                </div>
+                <h3 id="label-cpassword">Confirm Password</h3>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input id="cpassword" name="cpassword" type="password" class="form-control">
+                </div>
+                <button class="btn btn-success" id="btn-login">SignUp</button>
 
         </div>
         </form>
-        <div class="header">
-            <a class="btn btn-success" href="/singup" id="btn-singup">Create Account</a>
-        </div>
+
         {% endif %}
-        <!-- for grid
-                layout assign class video-grad-layout -->
+
+
+        <!-- for grid layout
+		assign class video-grad-layout -->
         <!-- <div id="video-container">
 			<div></div><video id="local-video" width="150" height="180" style="float: left;" autoplay playsinline></video></div>
 		</div> -->
         <div>
 
 
-            {% if user.is_authenticated %}
+            {% comment %} {% if user.is_authenticated %}
             <div id="video-container">
-
                 <div class="camera">
-                    <lable style=" position: fixed;    color: wheat;    font-size: 45px;">{{user}}</lable>
                     <video id="local-video" autoplay playsinline></video>
                 </div>
             </div>
-            {% endif %}
+            {% endif %} {% endcomment %}
 
 
             <!-- <div id="chat" class="container">
@@ -230,7 +248,7 @@ video {
 
 
 
-    {% if user.is_authenticated %}
+    {% comment %} {% if user.is_authenticated %}
     <div class="chat-popup" id="myForm">
         <div class="container">
             <div class="row">
@@ -316,7 +334,9 @@ video {
         </div>
 
     </footer>
-    {% endif %}
+    {% endif %} {% endcomment %}
+
+
     {% block content %}
     {% endblock %}
 </body>

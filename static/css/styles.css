@@ -9,6 +9,15 @@
    
     }
 
+    .header1 {
+        margin-bottom: -17px;
+        padding: 12px;
+        background: #202124;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
     #video-container div {
 
         position: relative;
@@ -204,8 +213,8 @@ video {
       }
       
      .header{
-         margin-bottom: 20px;
-         padding: 20px;
+         margin-bottom: 5px;
+         padding: 10px;
          background: #202124;
          display: flex; 
          justify-content: center; 

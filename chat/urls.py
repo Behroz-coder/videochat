@@ -1,8 +1,12 @@
 from django.urls import path
-from .views import peer1, peer2, peer
+from .views import peer1, peer11, peer, singup, home, ulogout
 
 urlpatterns = [
     path('', peer, name='peer'),
-    path('peer1/', peer1, name='peer1'),
-    path('peer2/', peer2, name='peer2'),
+    path('<int:id>', peer11, name='peer11'),
+    path('singup', singup, name='singup'),
+    path('home', home, name='home'),
+    path('logout', ulogout, name='logout'),
+#     path('peer1/', peer, name='peer'),
+#     path('peer2/', peer, name='peer'),
 ]

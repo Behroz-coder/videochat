@@ -3,17 +3,24 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 
 import asyncio
 
+from django.urls.conf import path
+
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-
-        self.room_group_name = 'Test-Room'
-
-        await self.channel_layer.group_add(
+        print(self.channel_layer_alias)
+        self.room_group_name = self.scope["path_remaining"]
+        print(self.scope["path_remaining"])
+        await self.channel_layer.group_add( 
             self.room_group_name,
             self.channel_name
         )
 
         await self.accept()
+        
+        # await self.send({
+        #     "type": "websocket.send",
+        #     "group-name": self.room_group_name
+        # })
 
     async def disconnect(self, close_code):
         
@@ -34,11 +41,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         # print('unanswered_offers: ', self.unanswered_offers)
 
-        print('Message received: ', message)
+        # print('Message received: ', message)
 
         print('peer_username: ', peer_username)
         print('action: ', action)
-        print('self.channel_name: ', self.channel_name)
+        # print('self.channel_name: ', self.channel_name)
+        print('self.channel_name: ', self.room_group_name)
 
         if(action == 'new-offer') or (action =='new-answer'):
             # in case its a new offer or answer

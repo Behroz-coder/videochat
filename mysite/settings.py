@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from decouple import config
 import os
+from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-h4u!dr1isd$(&nt2+w%_+p35^&eso3lwr3cw&rw@t(v)hkxf2^'
-# NUMB_TURN_CREDENTIAL = config('NUMB_TURN_CREDENTIAL', default=None)
-# NUMB_TURN_USERNAME = config('NUMB_TURN_USERNAME', default=None)
+NUMB_TURN_CREDENTIAL = config('NUMB_TURN_CREDENTIAL', default=None)
+NUMB_TURN_USERNAME = config('NUMB_TURN_USERNAME', default=None)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -146,3 +147,7 @@ CHANNEL_LAYERS = {
 #         },
 #     },
 # }
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+  
+}
